@@ -8,7 +8,7 @@ import CalcButton from './components/CalcButton';
 import { useReducer } from 'react';
 import reducer, { initialState } from './reducers';
 
-import { applyNumber } from './actions';
+import { applyNumber, changeOperation } from './actions';
 
 
 
@@ -21,6 +21,11 @@ function App() {
   const handleNumClick = (e) => {
     const number = parseInt(e.target.innerHTML, 10)
     dispatch(applyNumber(number))
+  }
+
+  const handleOpClick = (e) => {
+    const operator = e.target.innerHTML;
+    dispatch(changeOperation(operator))
   }
 
   return (
@@ -64,9 +69,9 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={"+"}/>
-              <CalcButton value={"*"}/>
-              <CalcButton value={"-"}/>
+              <CalcButton value={"+"} onClick={handleOpClick}/>
+              <CalcButton value={"*"} onClick={handleOpClick}/>
+              <CalcButton value={"-"} onClick={handleOpClick}/>
             </div>
 
             <div className="row ce_button">
